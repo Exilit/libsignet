@@ -7,4 +7,4 @@ Dependencies:
 libcommon
 
 NOTE:
-.project and .cproject eclipse files are outdated.
+ .project and .cproject eclipse files are outdated.
