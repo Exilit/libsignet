@@ -125,7 +125,7 @@ keys_type_t _keys_get_type(const unsigned char *bin_keys, size_t len) {
 
 	if(!bin_keys) {
 		RET_ERROR_CUST(KEYS_TYPE_ERROR, ERR_BAD_PARAM, NULL);
-	} else if(!_keys_check_length(bin_keys, len) < 0) {
+	} else if(_keys_check_length(bin_keys, len) < 0) {
 		RET_ERROR_CUST(KEYS_TYPE_ERROR, ERR_BAD_PARAM, NULL);
 	}
 
@@ -155,7 +155,7 @@ ED25519_KEY * _keys_fetch_sign_key(const unsigned char *bin_keys, size_t len) {
 
 	if(!bin_keys) {
 		RET_ERROR_PTR(ERR_BAD_PARAM, NULL);
-	} else if(!_keys_check_length(bin_keys, len) < 0) {
+	} else if(_keys_check_length(bin_keys, len) < 0) {
 		RET_ERROR_PTR(ERR_BAD_PARAM, NULL);
 	} else if(len < KEYS_HEADER_SIZE + 1 + ED25519_KEY_SIZE) {
 		RET_ERROR_PTR(ERR_BAD_PARAM, "keys buffer too small for signing key");
@@ -236,7 +236,7 @@ EC_KEY * _keys_fetch_enc_key(const unsigned char *bin_keys, size_t len) {
 
 	if(!bin_keys) {
 		RET_ERROR_PTR(ERR_BAD_PARAM, NULL);
-	} else if(!_keys_check_length(bin_keys, len) < 0) {
+	} else if(_keys_check_length(bin_keys, len) < 0) {
 		RET_ERROR_PTR(ERR_BAD_PARAM, NULL);
 	}
 
