@@ -34,10 +34,19 @@ void usage(const char * name) {
 */
 int wizard_get_input(const char *prompt, char *buf, size_t bufsize, int exit_failure) {
 
-	if (prompt) {
-		fprintf(stderr, "%s\n", prompt);
+	if(!buf || !bufsize ) {
+		fprintf(stderr, "Error: No buffer specified, or buffer size is 0.\n");
+		
+		if(exit_failure) {
+			exit(EXIT_FAILURE);
+		}
+		
+		return 0;
 	}
 
+	if (prompt) {
+		fprintf(stout, "%s\n", prompt);
+	}
 
 	memset(buf, 0, bufsize);
 
@@ -49,7 +58,6 @@ int wizard_get_input(const char *prompt, char *buf, size_t bufsize, int exit_fai
 		}
 
 		return 0;
-
 	}
 
 	// Trim off trailing new character.
@@ -212,7 +220,7 @@ void generate_signet(const char * signet_name, const char * signet_file, const c
 
 		if(type == SIGNET_TYPE_SSR) {
 
-			if(str_printf(&signet_f, "%s.ssr", signet_name) < 0) {
+			if(tf(&signet_f, "%s.ssr", signet_name) < 0) {
 				fprintf(stderr, "Could not concatenate strings.\n");
 				exit(EXIT_FAILURE);
 			}
@@ -344,7 +352,7 @@ void sign_signet(const char *signet_name, const char *ssr_f, const char *keys_f,
 	if(!signet_file) {
 		signet_alloc = 1;
 
-		if(!str_printf(&signet_f, "%s.signet", signet_name) < 0) {
+		if(str_printf(&signet_f, "%s.signet", signet_name) < 0) {
 			fprintf(stderr, "Could not concatenate strings.\n");
 			signet_destroy(signet);
 			exit(EXIT_FAILURE);
