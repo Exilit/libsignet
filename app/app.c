@@ -36,16 +36,16 @@ int wizard_get_input(const char *prompt, char *buf, size_t bufsize, int exit_fai
 
 	if(!buf || !bufsize ) {
 		fprintf(stderr, "Error: No buffer specified, or buffer size is 0.\n");
-		
+
 		if(exit_failure) {
 			exit(EXIT_FAILURE);
 		}
-		
+
 		return 0;
 	}
 
 	if (prompt) {
-		fprintf(stout, "%s\n", prompt);
+		fprintf(stdout, "%s\n", prompt);
 	}
 
 	memset(buf, 0, bufsize);
@@ -106,8 +106,8 @@ void generate_signet(const char * signet_name, const char * signet_file, const c
 	}
 
 	if(!keys_file) {
-	
-		keys_alloc = 1;	
+
+		keys_alloc = 1;
 		if(str_printf(&keys_f, "%s.keys", signet_name) < 0) {
 			fprintf(stderr, "could not concatenate strings");
 			exit(EXIT_FAILURE);
@@ -169,7 +169,7 @@ void generate_signet(const char * signet_name, const char * signet_file, const c
 		case SIGNET_TYPE_SSR:
 
 			if(old_keys) {
-				
+
 				if(!(keys_bin = keys_get_binary(old_keys, &keys_len))) {
 					fprintf(stderr, "Could not open the specified keys file: %s\n", old_keys);
 					free_ed25519_key(key);
@@ -214,13 +214,13 @@ void generate_signet(const char * signet_name, const char * signet_file, const c
 	}
 
 	free_ed25519_key(key);
-	
+
 	if(!signet_file) {
 		signet_alloc = 1;
 
 		if(type == SIGNET_TYPE_SSR) {
 
-			if(tf(&signet_f, "%s.ssr", signet_name) < 0) {
+			if(str_printf(&signet_f, "%s.ssr", signet_name) < 0) {
 				fprintf(stderr, "Could not concatenate strings.\n");
 				exit(EXIT_FAILURE);
 			}
@@ -265,7 +265,7 @@ void generate_signet(const char * signet_name, const char * signet_file, const c
  * @param	signet_file	Filename for the output signet, if NULL default name based on signet_name is used.
  * @return	void.
 */
-void sign_signet(const char *signet_name, const char *ssr_f, const char *keys_f, const char *signet_file) {   
+void sign_signet(const char *signet_name, const char *ssr_f, const char *keys_f, const char *signet_file) {
 
 	int signet_alloc = 0;
 	char *signet_f = NULL, wizard_string[256], *domain = NULL;
@@ -273,7 +273,7 @@ void sign_signet(const char *signet_name, const char *ssr_f, const char *keys_f,
 	unsigned char *keys_bin;
 	ED25519_KEY *key;
 	signet_t * signet;
-	
+
 	if(!signet_name) {
 		fprintf(stderr, "No signet id.\n");
 		exit(EXIT_FAILURE);
@@ -331,7 +331,7 @@ void sign_signet(const char *signet_name, const char *ssr_f, const char *keys_f,
 
 	memset(keys_bin, 0, keys_len);
 	free(keys_bin);
-	
+
 	signet_sign_initial_sig(signet, key);
 	wizard_get_input("User name:", wizard_string, sizeof(wizard_string), 1);
 	signet_add_field_string(signet, SIGNET_USER_NAME, NULL, wizard_string, 0);
@@ -357,7 +357,7 @@ void sign_signet(const char *signet_name, const char *ssr_f, const char *keys_f,
 			signet_destroy(signet);
 			exit(EXIT_FAILURE);
 		}
-		
+
 		signet_f[domain - 1 - signet_name] = '-';
 	} else {
 		signet_f = (char *)signet_file;
@@ -366,7 +366,7 @@ void sign_signet(const char *signet_name, const char *ssr_f, const char *keys_f,
 	if(signet_to_file(signet, signet_f) < 0) {
 		fprintf(stderr, "Could not store signet in file.\n");
 		signet_destroy(signet);
-	
+
 		if(signet_alloc) {
 			free(signet_f);
 		}
@@ -444,7 +444,7 @@ void examine_signet(signet_type_t type) {
 	signet_field_key_t *keys;
 
 	switch(type) {
-		
+
 		case SIGNET_TYPE_ORG:
 			keys = signet_org_field_keys;
 			strtype = "Organizational signet";
@@ -497,10 +497,10 @@ int main(int argc, char** argv) {
 	};
 
 	if(argc == 1) {
-		usage(argv[0]);	
+		usage(argv[0]);
 		return 0;
 	}
-	
+
 	while((opt = getopt_long(argc, argv, "g:s:d:o:k:r:c:x:h", long_options, &opt_index)) != -1 ) {
 
 		switch(opt) {
@@ -587,7 +587,7 @@ int main(int argc, char** argv) {
 
 				examine_type = optarg;
 				command = EXAMINE;
-				break;			
+				break;
 			case 'h':
 				is_help = 1;
 				break;
@@ -601,7 +601,7 @@ int main(int argc, char** argv) {
 	if(is_help) {
 		usage(argv[0]);
 		return 0;
-	} 
+	}
 
 	crypto_init();
 
@@ -618,7 +618,7 @@ int main(int argc, char** argv) {
 			generate_signet(signet_id, out_file, keys_file, custody_file);
 			break;
 		case SIGN:
-			
+
 			if(!ssr_file) {
 				fprintf(stderr, "No ssr filename specified for signing.\n");
 				usage(argv[0]);
