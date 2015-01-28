@@ -1115,13 +1115,13 @@ int _signet_add_field(signet_t *signet, unsigned char fid, size_t name_size, con
 			field_size += keys[fid].data_size;
 			break;
 		case 1:
-			maxsize = MAX_1_BYTE;
+			maxsize = UNSIGNED_MAX_1_BYTE;
 			break;
 		case 2:
-			maxsize = MAX_2_BYTE;
+			maxsize = UNSIGNED_MAX_2_BYTE;
 			break;
 		case 3:
-			maxsize = MAX_3_BYTE;
+			maxsize = UNSIGNED_MAX_3_BYTE;
 			break;
 		default:
 			RET_ERROR_INT(ERR_UNSPEC, "inalid signet field data size");
