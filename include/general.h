@@ -1,5 +1,5 @@
-#ifndef COMMON_H
-#define COMMON_H
+#ifndef SIGNET_GENERAL_H
+#define SIGNET_GENERAL_H
 
 #define SIGNET_VER_NO                0x1
 #define SIGNET_HEADER_SIZE	     5
