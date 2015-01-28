@@ -8,9 +8,9 @@
 #define SIGNET_PEM_TAG		     "SIGNET"
 #define KEYS_HEADER_SIZE	     5
 #define FIELD_NAME_MAX_SIZE	     255
-#define MAX_1_BYTE	             255
-#define MAX_2_BYTE                   65535
-#define MAX_3_BYTE                   16777215
+#define UNSIGNED_MAX_1_BYT	     255
+#define UNSIGNED_MAX_2_BYTE	     65535
+#define UNSIGNED_MAX_3_BYTE          16777215
 #define SIGNET_FID_MAX               255
 #define KEYS_FID_MAX		     3
 
