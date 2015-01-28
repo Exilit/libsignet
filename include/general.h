@@ -162,7 +162,7 @@ B64,
 HEX, 
 PNG, 
 UNICODE
-} data_t;
+} field_data_t;
 
 typedef struct {
 
@@ -176,7 +176,7 @@ typedef struct {
 	unsigned char bytes_data_size;	/* Number of bytes for this */
 	uint32_t data_size;    	    	/* data_size = 0 indicates the size being variable */
 	
-	data_t data_type;		/* Dump format for the field */
+	field_data_t data_type;		/* Dump format for the field */
 
 	char* name;
 	char* description;		/* field type description*/
