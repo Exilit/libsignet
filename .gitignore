@@ -1,2 +1,4 @@
 libsignet.a
+*.o
+*.so
 signet
