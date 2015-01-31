@@ -1495,7 +1495,7 @@ int _signet_set_id(signet_t *signet, const char *id) {
 				RET_ERROR_INT(ERR_BAD_PARAM, "user signet id must contain the '@' symbol");
 			}
 
-			fid = SIGNET_ORG_ID;
+			fid = SIGNET_USER_ID;
 			break;
 		case SIGNET_TYPE_SSR:
 			RET_ERROR_INT(ERR_UNSPEC, "SSR does not have an id field");
