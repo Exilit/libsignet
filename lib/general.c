@@ -1,5 +1,7 @@
 #include "general.h"
 
+#include <stdio.h>
+
 #define SKEY_EMPTY {     0,     0,     0, 0, 0, 0, 0, NULL, NULL }
  
 signet_field_key_t signet_org_field_keys[256] = {
@@ -154,6 +156,7 @@ signet_field_key_t signet_ssr_field_keys[256] = {
 int _write_pem_data(const char *b64_data, const char *tag, const char *filename) {
 
 	FILE *fp;
+	unsigned char fbuf[BUFSIZ];
 	size_t data_size;
 	unsigned int i;
 
@@ -167,6 +170,7 @@ int _write_pem_data(const char *b64_data, const char *tag, const char *filename)
 		PUSH_ERROR_SYSCALL("fopen");
 		RET_ERROR_INT_FMT(ERR_UNSPEC, "could not open file for writing: %s", filename);
 	}
+	setbuf(fp, fbuf);
 
 	fprintf(fp, "-----BEGIN %s-----\n", tag);
 
@@ -181,6 +185,7 @@ int _write_pem_data(const char *b64_data, const char *tag, const char *filename)
 
 	fprintf(fp, "\n-----END %s-----\n", tag);
 	fclose(fp);
+	_secure_wipe(fbuf, sizeof(fbuf));
 
 	return 0;
 }
