@@ -2,6 +2,6 @@ libsignet.a
 *.o
 *.so
 signet
-check/*.keys
-check/*.signet
+checks/*.keys
+checks/*.signet
 signet.check

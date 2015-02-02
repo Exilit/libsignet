@@ -64,21 +64,35 @@ KEYS_TYPE_USER
 typedef enum
 {
 SIGNET_ORG_POK = 1,           		/* The ed25519 public signing key of the signet holder */
-SIGNET_ORG_ENC_KEY,			/* The ECC public encryption key of the signet holder */
 SIGNET_ORG_SOK_KEY,			/* Secondary Organization Signing keys */
-SIGNET_ORG_HOST = 16,			/* Dark Mail Access Host */
-SIGNET_ORG_CERT,			/* Dark Mail Access Certificate */
-SIGNET_ORG_WEBMAIL,			/* Web Mail Access Location */
-SIGNET_ORG_NAME = 25,			/* Organization name */
-SIGNET_ORG_WEBSITE,			/* Organization website */
-SIGNET_ORG_ADDRESS,			/* Organization Address */
-SIGNET_ORG_LOCALTIY,			/* Organization locality */
-SIGNET_ORG_PROVINCE,			/* Organization state/province */
-SIGNET_ORG_COUNTRY,			/* Organization country */
-SIGNET_ORG_POSTAL,			/* Organization zip code */
-SIGNET_ORG_PHONE,			/* Organization phone number */
-SIGNET_ORG_PHOTO = 124,			/* Organizational photo*/
-SIGNET_ORG_UNDEFINED,			/* UNICODE undefined field*/
+SIGNET_ORG_ENC_KEY,			/* The ECC public encryption key of the signet holder */
+SIGNET_ORG_NAME = 16,
+SIGNET_ORG_ADDRESS,
+SIGNET_ORG_PROVINCE,
+SIGNET_ORG_COUNTRY,
+SIGNET_ORG_POSTAL,
+SIGNET_ORG_PHONE,
+SIGNET_ORG_LANGUAGE,
+SIGNET_ORG_CURRENCY,
+SIGNET_ORG_CRYPTOCURRENCY,
+SIGNET_ORG_MOTTO,
+SIGNET_ORG_EXTENSIONS,
+SIGNET_ORG_MSG_SIZE_LIM,
+SIGNET_ORG_WEBSITE = 160,
+SIGNET_ORG_ABUSE = 200,
+SIGNET_ORG_ADMIN,
+SIGNET_ORG_SUPPORT,
+SIGNET_ORG_WEB_HOST,
+SIGNET_ORG_WEB_LOCATION,
+SIGNET_ORG_WEB_CERT,
+SIGNET_ORG_MAIL_HOST,
+SIGNET_ORG_MAIL_CERT,
+SIGNET_ORG_ONION_ACCESS_HOST,
+SIGNET_ORG_ONION_ACCESS_CERT,
+SIGNET_ORG_ONION_DELIVERY_HOST,
+SIGNET_ORG_ONION_DELIVERY_CERT,
+SIGNET_ORG_UNDEFINED = 251,		/* UNICODE undefined field*/
+SIGNET_ORG_PHOTO,			/* Organizational photo*/
 SIGNET_ORG_CORE_SIG,			/* ORG signature*/
 SIGNET_ORG_ID,				/* Org Signet ID */
 SIGNET_ORG_FULL_SIG			/* Org Signature following the ID field */
@@ -93,16 +107,30 @@ SIGNET_USER_ALT_KEY,			/* Alternative encryption keys for the user */
 SIGNET_USER_COC_SIG,			/* Chain of custody signature by user's previous signing key*/
 SIGNET_USER_SSR_SIG,			/* User signature with user's signing key*/
 SIGNET_USER_INITIAL_SIG,		/* Initial signature by the organization's signing key*/
-SIGNET_USER_NAME = 25,			/* User name */
-SIGNET_USER_WEBSITE,			/* User website */
-SIGNET_USER_ADDRESS,			/* User address */
-SIGNET_USER_LOCALITY,			/* User locality */
-SIGNET_USER_PROVINCE,			/* User state/province */
-SIGNET_USER_COUNTRY,			/* User country */
-SIGNET_USER_POSTAL,			/* User zip code */
-SIGNET_USER_PHONE,			/* User phone number */
-SIGNET_USER_PHOTO = 124,		/* User photo*/
-SIGNET_USER_UNDEFINED,			/* ASCII undefined field*/
+SIGNET_USER_NAME = 16,
+SIGNET_USER_ADDRESS,
+SIGNET_USER_PROVINCE,
+SIGNET_USER_COUNTRY,
+SIGNET_USER_POSTAL,
+SIGNET_USER_PHONE,
+SIGNET_USER_LANGUAGE,
+SIGNET_USER_CURRENCY,
+SIGNET_USER_CRYPTOCURRENCY,
+SIGNET_USER_MOTTO,
+SIGNET_USER_EXTENSIONS,
+SIGNET_USER_MSG_SIZE_LIM,
+SIGNET_USER_CODECS = 93,
+SIGNET_USER_TITLE,
+SIGNET_USER_EMPLOYER,
+SIGNET_USER_GENDER,
+SIGNET_USER_ALMA_MATER,
+SIGNET_USER_SUPERVISOR,
+SIGNET_USER_POLITICAL_PARTY,
+SIGNET_USER_ALTERNATE_ADDRESS = 200,
+SIGNET_USER_RESUME,
+SIGNET_USER_ENDORSEMENTS,
+SIGNET_USER_UNDEFINED = 251,		/* ASCII undefined field*/
+SIGNET_USER_PHOTO,			/* User photo*/
 SIGNET_USER_CORE_SIG, 			/* Final Organizational Signature*/
 SIGNET_USER_ID,				/* User Signet ID */
 SIGNET_USER_FULL_SIG			/* Org Signature following the ID field */
@@ -122,8 +150,8 @@ SIGNET_SSR_SSR_SIG,			/* User signature with user's signing key*/
 typedef enum
 {
 KEYS_ORG_PRIVATE_POK = 1,
-KEYS_ORG_PRIVATE_ENC,
 KEYS_ORG_PRIVATE_SOK,
+KEYS_ORG_PRIVATE_ENC,
 } KEYS_ORG_T;
 
 
