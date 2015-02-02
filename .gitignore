@@ -2,3 +2,6 @@ libsignet.a
 *.o
 *.so
 signet
+check/*.keys
+check/*.signet
+signet.check
