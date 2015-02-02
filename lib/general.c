@@ -156,7 +156,7 @@ signet_field_key_t signet_ssr_field_keys[256] = {
 int _write_pem_data(const char *b64_data, const char *tag, const char *filename) {
 
 	FILE *fp;
-	unsigned char fbuf[BUFSIZ];
+	char fbuf[BUFSIZ];
 	size_t data_size;
 	unsigned int i;
 
